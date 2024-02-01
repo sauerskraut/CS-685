@@ -1,0 +1,3 @@
+$ cat .gitignore
+/data
+geometric/__pycache__/generic.cpython-310.pyc
