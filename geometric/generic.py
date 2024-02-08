@@ -79,20 +79,14 @@ def train_evaluate(model, dataset_name, root_dir):
     plt.figure(1,figsize=(14,12)) 
     nx.draw(G, cmap=plt.get_cmap('Set1'),node_color = pred.cpu().numpy(), node_size=75, linewidths=6)
     plt.text(0.05, 0.05, f'Accuracy: {acc:.4f}', horizontalalignment='left', verticalalignment='bottom', transform=plt.gca().transAxes, fontsize=12, bbox=dict(facecolor='red', alpha=0.5))
-    plt.suptitle(f'GCN on {dataset_name} Dataset Using Model ' + model.__class__.__name__, fontsize=16)
-
-    # FIX ME
-    # Save the plot
-    # date_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    # save_file = os.path.join(root_dir, f'{dataset_name}_{date_time}_plot.png')
-    # plt.savefig(save_file)
+    plt.suptitle(f'{dataset_name} Dataset Using Model ' + model.__class__.__name__, fontsize=16)
 
     plt.show()
 
 def runner(dataset, root_dir='./data'):
     train_evaluate(GCN, dataset, root_dir)
-    train_evaluate(ChebNet, dataset, root_dir)
-    train_evaluate(GAT, dataset, root_dir)
+    # train_evaluate(ChebNet, dataset, root_dir)
+    # train_evaluate(GAT, dataset, root_dir)
 
 # Try running the Cora dataset through different models
 if __name__ == '__main__':
