@@ -96,6 +96,13 @@ class MaterialStructureEnvironment:
         nx.draw(G, with_labels=True)
         plt.show()
 
+    def is_done(self):
+        # The episode is done when the predicted structure is the same as the actual structure
+        if self.calculate_reward() == 100:
+            return True
+        else:
+            return False
+
     def step(self, action):
         # Apply the action to the predicted structure
         self.predicted_structure = self.apply_action(action)
@@ -104,10 +111,6 @@ class MaterialStructureEnvironment:
         reward = self.calculate_reward()
 
         return self.predicted_structure, reward
-
-    def apply_action(self, action):
-        # Apply the action to the predicted structure
-        return self.predicted_structure
 
     def calculate_reward(self):# Calculate the degree of each node in the actual and predicted graphs
         # Get the sets of nodes in the actual and predicted graphs
@@ -134,12 +137,28 @@ class MaterialStructureEnvironment:
         del self.predicted_structure[node_id]
 
     def add_edge(self, node_id1, node_id2, attributes):
-        # Add a new edge between the nodes with the given IDs to the predicted structure
-        self.predicted_structure.add_edge(node_id1, node_id2, attributes)
+        # Add a new edge to the predicted graph
+        edge_index = self.predicted_graph.edge_index.t().tolist()
+        edge_attr = self.predicted_graph.edge_attr.tolist()
+
+        edge_index.append([node_id1, node_id2])
+        edge_attr.append(attributes)
+
+        self.predicted_graph.edge_index = torch.tensor(edge_index, dtype=torch.long).t().contiguous()
+        self.predicted_graph.edge_attr = torch.tensor(edge_attr, dtype=torch.float).view(-1, 2)
 
     def remove_edge(self, node_id1, node_id2):
-        # Remove the edge between the nodes with the given IDs from the predicted structure
-        self.predicted_structure.remove_edge(node_id1, node_id2)
+        # Remove the edge from the predicted graph
+        edge_index = self.predicted_graph.edge_index.t().tolist()
+        edge_attr = self.predicted_graph.edge_attr.tolist()
+
+        if [node_id1, node_id2] in edge_index:
+            idx = edge_index.index([node_id1, node_id2])
+            edge_index.pop(idx)
+            edge_attr.pop(idx)
+
+        self.predicted_graph.edge_index = torch.tensor(edge_index, dtype=torch.long).t().contiguous()
+        self.predicted_graph.edge_attr = torch.tensor(edge_attr, dtype=torch.float).view(-1, 2)
 
     def modify_node(self, node_id, new_attributes):
         # Modify the attributes of the node with the given ID in the predicted structure
