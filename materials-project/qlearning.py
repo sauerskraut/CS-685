@@ -1,3 +1,5 @@
+import numpy as np
+
 class QLearning:
     def __init__(self, environment, actions, learning_rate=0.5, discount_factor=0.95, exploration_rate=0.5):
         self.environment = environment
@@ -30,6 +32,7 @@ class QLearning:
         for episode in range(episodes):
             # Reset the environment and get the initial state
             state = self.environment.initialize_structure()
+            done = True
 
             while True:
                 # Choose an action
