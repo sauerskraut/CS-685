@@ -1,6 +1,4 @@
 $ cat .gitignore
 /data
-geometric/__pycache__/generic.cpython-310.pyc
-materials-project/__pycache__/config.cpython-310.pyc
-materials-project/__pycache__/external.cpython-310.pyc
-materials-project/config.py
+Archive/*
+__pycache__/*

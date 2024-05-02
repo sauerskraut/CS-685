@@ -1,0 +1,58 @@
+{
+  "crystal_structure": {
+    "lattice": {
+      "lattice_kind": "Conventional",
+      "a": "11.61 Å",
+      "b": "6.22 Å",
+      "c": "5.27 Å",
+      "α": "90.00 º",
+      "β": "113.73 º",
+      "ɣ": "90.00 º",
+      "Volume": "348.51 Å³"
+    },
+    "atomic_positions": [
+      {
+        "wyckoff": "4d",
+        "element": "Hg",
+        "x": "1/4",
+        "y": "3/4",
+        "z": "0"
+      },
+      {
+        "wyckoff": "4e",
+        "element": "W",
+        "x": "0",
+        "y": "0.180699",
+        "z": "3/4"
+      },
+      {
+        "wyckoff": "8f",
+        "element": "O",
+        "x": "0.383166",
+        "y": "0.140786",
+        "z": "0.024256"
+      },
+      {
+        "wyckoff": "8f",
+        "element": "O",
+        "x": "0.404688",
+        "y": "0.592234",
+        "z": "0.972889"
+      }
+    ],
+    "symmetry": {
+      "crystal_system": "Monoclinic",
+      "lattice_system": "Monoclinic",
+      "hall_number": "-C 2yc",
+      "international_number": 15,
+      "symbol": "C2/c",
+      "point_group": "2/m"
+    },
+    "structure_meta": {
+      "number_of_atoms": 24,
+      "density": "8.55 g·cm⁻³",
+      "dimensionality": "",
+      "possible_oxidation_states": "W⁶⁺, Hg²⁺, O²⁻"
+    }
+  }
+}
