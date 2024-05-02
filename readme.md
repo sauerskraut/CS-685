@@ -1,3 +1,3 @@
 ## Hello! ##
 This is a repo that houses preliminary code for crystal structure generation.
-There's still more to add, but this is a WIP.
+This is primarily for archival purposes - this repo contains no active changes and should be considered dead.
